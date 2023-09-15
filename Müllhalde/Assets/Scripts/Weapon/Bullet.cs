@@ -10,14 +10,17 @@ public class Bullet : MonoBehaviour
     void Awake()
     {
         Destroy(gameObject, lifeTime);
+        
+       // GameEvents.Instance.onTargetHit += TargetHitEvent;
     }
+    
 
 
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            GameEvents.Instance.TargetHitEvent();
+           // GameEvents.Instance.TargetHitEvent();
 
             Destroy(gameObject);
         }
