@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class Vector3 : MonoBehaviour
 {
-
-    private float x;
-    private float y;
-    private float z;
+    public float x;
+    public float y;
+    public float z;
 
     public Vector3()
     {

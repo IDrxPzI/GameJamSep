@@ -6,9 +6,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] public int HP = 100;
-    [SerializeField] private Vector3 minScale = new Vector3(0.4f, 0.4f, 0.4f);
+    [SerializeField] private UnityEngine.Vector3 minScale = new UnityEngine.Vector3(0.4f, 0.4f, 0.4f);
 
-    private Vector3 objectScale;
+    private UnityEngine.Vector3 objectScale;
 
     private void Start()
     {

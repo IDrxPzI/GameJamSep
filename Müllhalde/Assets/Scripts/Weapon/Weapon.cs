@@ -34,7 +34,7 @@ public class Weapon : MonoBehaviour
     {
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out RaycastHit hitInfo))
         {
-            Vector3 direction = hitInfo.point - transform.position;
+            UnityEngine.Vector3 direction = hitInfo.point - transform.position;
             transform.rotation = Quaternion.LookRotation(direction);
         }
     }
@@ -65,6 +65,6 @@ public class Weapon : MonoBehaviour
 struct Weapons
 {
     public Mesh weaponMesh;
-    public int id;
+    public int ID;
     public int damage;
 }
