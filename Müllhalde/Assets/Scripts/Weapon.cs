@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        Debug.DrawLine(transform.position, new Vector3(0, 0, 100), Color.green);
+        Debug.DrawLine(transform.position, new UnityEngine.Vector3(0, 0, 100), Color.green);
     }
 
 

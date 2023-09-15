@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 move;
     private Vector2 look;
-    private Vector3 playerVelocity;
+    private UnityEngine.Vector3 playerVelocity;
 
     private MouseLook[] mouselook;
 
@@ -124,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        Vector3 _move = new Vector3(direction.x, 0, direction.y);
+        UnityEngine.Vector3 _move = new UnityEngine.Vector3(direction.x, 0, direction.y);
         playerController.Move(transform.TransformDirection(_move) * Time.deltaTime * playerSpeed);
 
         if (jumped && isGrounded)
