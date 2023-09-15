@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField] private int currentWeapon;
+
     [SerializeField] private GameObject bulletPrefab;
 
     [SerializeField] private Camera mainCamera;
@@ -26,7 +29,7 @@ public class Weapon : MonoBehaviour
     {
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out RaycastHit hitInfo))
         {
-            UnityEngine.Vector3 direction = hitInfo.point - transform.position;
+            Vector3 direction = hitInfo.point - transform.position;
             transform.rotation = Quaternion.LookRotation(direction);
         }
     }
@@ -45,15 +48,37 @@ public class Weapon : MonoBehaviour
 
                 if (enemy != null)
                 {
-                    enemy.TakeDamage(damage);
+                    enemy.TakeDamage(WeaponDamage(currentWeapon));
                 }
             }
         }
     }
 
-    private int WeaponDamage()
+    private int WeaponDamage(int weapons)
     {
-        return 0;
+        for (int i = 0; i < currentWeapon; i++)
+        {
+            switch (weapons)
+            {
+                case 1:
+                    damage = this.weapons[i].damage;
+                    break;
+                case 2:
+                    damage = this.weapons[i].damage;
+                    break;
+                case 3:
+                    damage = this.weapons[i].damage;
+                    break;
+                case 4:
+                    damage = this.weapons[i].damage;
+                    break;
+                case 5:
+                    damage = this.weapons[i].damage;
+                    break;
+            }
+        }
+
+        return damage;
     }
 }
 

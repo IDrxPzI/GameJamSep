@@ -6,27 +6,40 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] public int HP = 100;
-    [SerializeField] private UnityEngine.Vector3 minScale = new UnityEngine.Vector3(0.4f, 0.4f, 0.4f);
+    [SerializeField] private Vector3 minScale = new Vector3(0.4f, 0.4f, 0.4f);
 
-    private UnityEngine.Vector3 objectScale;
+    private Vector3 objectScale;
 
-    private void Start()
+    private void Awake()
     {
-        // GameEvents.Instance.onTargetHit += BulletHit;
+       // GameEvents.Instance.onTargetHit += DestroyGameobject;
 
         objectScale = transform.localScale;
     }
 
-    public void TakeDamage(int amount)
+    private void Update()
+    {
+        DestroyGameobject();
+    }
+
+    void DestroyGameobject()
     {
         if (HP <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void TakeDamage(int amount)
+    {
+        if (HP <= 1)
         {
             EnemyDrops drops = new EnemyDrops();
             drops.DropItems();
 
             Destroy(gameObject);
         }
-        
+
         HP -= amount;
 
         //compare scale to minScale to keep it from been to small
@@ -43,5 +56,10 @@ public class Enemy : MonoBehaviour
         objectScale *= 0.85f;
 
         transform.localScale = objectScale;
+    }
+
+    private void OnDestroy()
+    {
+        //GameEvents.Instance.onTargetHit -= DestroyGameobject;
     }
 }
