@@ -35,8 +35,8 @@ public class MouseLook : MonoBehaviour
                 rotationY += rotate.y * gamesettings.mouseSensitivityY;
                 rotationX = ClampAngle(rotationX, gamesettings.minimumX, gamesettings.maximumX);
                 rotationY = ClampAngle(rotationY, gamesettings.minimumY, gamesettings.maximumY);
-                Quaternion xQuaternion = Quaternion.AngleAxis(rotationX, Vector3.up);
-                Quaternion yQuaternion = Quaternion.AngleAxis(rotationY, Vector3.left);
+                    Quaternion xQuaternion = Quaternion.AngleAxis(rotationX, UnityEngine.Vector3.up);
+                    Quaternion yQuaternion = Quaternion.AngleAxis(rotationY, UnityEngine.Vector3.left);
 
                 transform.localRotation = originalRotation * xQuaternion * yQuaternion;
                 break;
@@ -45,7 +45,7 @@ public class MouseLook : MonoBehaviour
             {
                 rotationX += rotate.x * gamesettings.mouseSensitivityX;
                 rotationX = ClampAngle(rotationX, gamesettings.minimumX, gamesettings.maximumX);
-                Quaternion xQuaternion = Quaternion.AngleAxis(rotationX, Vector3.up);
+                    Quaternion xQuaternion = Quaternion.AngleAxis(rotationX, UnityEngine.Vector3.up);
                 transform.localRotation = originalRotation * xQuaternion;
                 break;
             }
@@ -53,7 +53,7 @@ public class MouseLook : MonoBehaviour
             {
                 rotationY += rotate.y * gamesettings.mouseSensitivityY;
                 rotationY = ClampAngle(rotationY, gamesettings.minimumY, gamesettings.maximumY);
-                Quaternion yQuaternion = Quaternion.AngleAxis(rotationY, Vector3.left);
+                    Quaternion yQuaternion = Quaternion.AngleAxis(rotationY, UnityEngine.Vector3.left);
                 transform.localRotation = originalRotation * yQuaternion;
                 break;
             }
