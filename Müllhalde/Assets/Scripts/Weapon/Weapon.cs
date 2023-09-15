@@ -22,14 +22,6 @@ public class Weapon : MonoBehaviour
         RotateGun();
     }
 
-    public static int Damage(int HP)
-    {
-        if (HP <= 0) return 0;
-        int damage = 10;
-
-        return HP -= damage;
-    }
-
     void RotateGun()
     {
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out RaycastHit hitInfo))
@@ -57,6 +49,11 @@ public class Weapon : MonoBehaviour
                 }
             }
         }
+    }
+
+    private int WeaponDamage()
+    {
+        return 0;
     }
 }
 
