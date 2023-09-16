@@ -26,7 +26,7 @@ public class Enemy_Slime : MonoBehaviour
 
     private void Awake()
     {
-        player = GetComponent<GameObject>();
+        player = GameObject.FindGameObjectWithTag("Player");
         navMeshAgent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
 
@@ -38,21 +38,23 @@ public class Enemy_Slime : MonoBehaviour
     }
     private void Update()
     {
+        Debug.Log(player.transform.position);
+        
         navMeshAgent.SetDestination(player.transform.position);
     }
     // Update is called once per frame
     void FixedUpdate()
     {
 
-        if (enemystate == Enemystate.Chase)
+        /*if (enemystate == Enemystate.Chase)
         {
             navMeshAgent.isStopped = false;
             
-        }
+        }*/
         if (Distanz(transform.position, player.transform.position) <= maxDistance)
         {
             enemystate = Enemystate.Attack;
-            navMeshAgent.isStopped = true;
+           // navMeshAgent.isStopped = true;
         }
         if (enemystate == Enemystate.Attack && isWait == false)
         {
