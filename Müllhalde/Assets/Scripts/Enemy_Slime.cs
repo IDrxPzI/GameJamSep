@@ -18,14 +18,23 @@ public class Enemy_Slime : MonoBehaviour
 
     public float slimeAvoidSpeed = 1f;
 
+    [SerializeField] private Vector3 minScale = new Vector3(0.4f, 0.4f, 0.4f);
+
     private NavMeshAgent navMeshAgent;
     private Rigidbody rb;
 
     public enum Enemystate { Chase, Attack };
     public Enemystate enemystate = Enemystate.Chase;
 
+
+    private Vector3 objectScale;
+
+    public Animator anim;
+
     private void Awake()
     {
+        objectScale = transform.localScale;
+
         player = GameObject.FindGameObjectWithTag("Player");
         navMeshAgent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
@@ -38,7 +47,6 @@ public class Enemy_Slime : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(player.transform.position);
         
         navMeshAgent.SetDestination(player.transform.position);
     }
@@ -82,10 +90,14 @@ public class Enemy_Slime : MonoBehaviour
         //Animation 
         if (slimeHP > 1)
         {
-            slimeHP--;
+            slimeHP-=11;
             GameObject bul = (GameObject)Instantiate(projectile, point.transform.position, Quaternion.identity);
+            Debug.Log("Kugel:" + point.forward * speed);
+
             bul.gameObject.GetComponent<Rigidbody>().velocity = point.forward * speed;
-        }
+            TakeDamage(1);
+        }            
+
         else
         {
             gameObject.GetComponent<Rigidbody>().velocity = point.forward * speed;
@@ -102,11 +114,53 @@ public class Enemy_Slime : MonoBehaviour
         Vector3 avoidDirection = enemy.gameObject.transform.position - transform.position;
         avoidDirection.Normalize();
         rb.velocity = new Vector3(avoidDirection.x * slimeAvoidSpeed * -1, 0f, avoidDirection.z * slimeAvoidSpeed * -1);
-        Debug.Log(avoidDirection);
     }
     public static float Distanz(Vector3 _v1, Vector3 _v2)
     {
         return (float)Math.Pow(((_v1.x - _v2.x) * (_v1.x - _v2.x)) + ((_v1.y - _v2.y) * (_v1.y - _v2.y)) + ((_v1.z - _v2.z) * (_v1.z - _v2.z)), 0.5);
+    }
+
+    public void TakeDamage(int amount)
+    {
+        if (slimeHP <= 0)
+        {
+            Debug.Log("habe weniger als 0 hp");
+            PlayDeathAnimation();
+        }
+
+        slimeHP -= amount;
+
+        //compare scale to minScale to keep it from been to small
+        var compareX = objectScale.x <= minScale.x;
+        var compareY = objectScale.y <= minScale.y;
+        var compareZ = objectScale.z <= minScale.z;
+
+        if (compareX | compareY | compareZ)
+        {
+            objectScale = minScale;
+            return;
+        }
+
+        objectScale *= 0.85f;
+
+        transform.localScale = objectScale;
+    }
+
+    public void DestroyGameobject()
+    {
+        if (slimeHP <= 0)
+        {
+            //später einfügen
+            //EnemyDrops drops = new EnemyDrops();
+            // drops.DropItems();
+            Debug.Log("tod Durch Animation");
+            Destroy(gameObject);
+        }
+    }
+
+    void PlayDeathAnimation()
+    {
+        anim.SetTrigger("death");
     }
 }
 
