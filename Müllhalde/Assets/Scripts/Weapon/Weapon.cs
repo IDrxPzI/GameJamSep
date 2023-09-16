@@ -8,10 +8,10 @@ using UnityEngine.InputSystem;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] public static int currentWeapon;
+    [SerializeField] public static int currentWeapon = 1;
 
     [SerializeField] public GameObject weaponPrefab;
-    
+
     [SerializeField] public GameObject bulletPrefab;
 
     [SerializeField] private Camera mainCamera;
@@ -22,9 +22,18 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] private Weapons[] weapons;
 
+    private void Start()
+    {
+        //GameEvents.Instance.onTargetHit += UpgradeWeapon;
+    }
+
     private void Update()
     {
         RotateGun();
+    }
+
+    void UpgradeWeapon()
+    {
     }
 
     void RotateGun()
@@ -82,6 +91,11 @@ public class Weapon : MonoBehaviour
 
         return damage;
     }
+
+    private void OnDestroy()
+    {
+        //GameEvents.Instance.onTargetHit -= UpgradeWeapon;
+    }
 }
 
 
@@ -92,7 +106,7 @@ struct Weapons
     public int ID;
     public int damage;
 
-    public Weapons(GameObject _prefab,int _ID,int _damage)
+    public Weapons(GameObject _prefab, int _ID, int _damage)
     {
         weaponPrefab = null;
         ID = 0;

@@ -11,6 +11,10 @@ public class MenuHandler : MonoBehaviour
 {
     [SerializeField] private InputActionAsset player;
 
+    [SerializeField] private GameObject weapon;
+
+    [SerializeField] private GameObject[] weaponPrefab;
+
     [SerializeField] private Button upgrade;
     [SerializeField] private Button recycle;
 
@@ -24,12 +28,8 @@ public class MenuHandler : MonoBehaviour
 
     [SerializeField] private GameObject credits;
 
-    private EnemyDrops drops;
 
-    private void Start()
-    {
-        drops = new EnemyDrops();
-    }
+    private static int weaponUpgradeCount = 0;
 
     /// <summary>
     /// starts the first level of the game
@@ -82,7 +82,15 @@ public class MenuHandler : MonoBehaviour
 
     public void UpgradeWeapon()
     {
-        Weapon.currentWeapon += 1;
+        Weapon.currentWeapon++;
+        for (int i = 0; i <= weaponUpgradeCount; i++)
+        {
+            weaponPrefab[i + 1].SetActive(true);
+            weaponPrefab[i].SetActive(false);
+            //GameEvents.Instance.TargetHitEvent();
+        }
+
+        weaponUpgradeCount++;
         EnemyDrops.amountReoRecycle -= 10;
     }
 
