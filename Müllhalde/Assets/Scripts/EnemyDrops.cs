@@ -10,7 +10,12 @@ public class EnemyDrops
     public static int amountTrash = 0;
     public static int amountReoRecycle = 0;
 
-    public int ReoPoints => amountReoRecycle;
+    public int ReoPoints
+    {
+        get => amountReoRecycle;
+        set => amountReoRecycle = value;
+    }
+
     public int TrashPoints => amountTrash;
 
     enum itemsToDrop

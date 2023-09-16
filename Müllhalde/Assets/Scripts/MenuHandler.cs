@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using TMPro;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,9 @@ using UnityEngine.UI;
 public class MenuHandler : MonoBehaviour
 {
     [SerializeField] private InputActionAsset player;
+
+    [SerializeField] private Button upgrade;
+    [SerializeField] private Button recycle;
 
     [SerializeField] private TextMeshProUGUI ReoRecyclePoints;
     [SerializeField] private TextMeshProUGUI trashPoints;
@@ -44,6 +48,7 @@ public class MenuHandler : MonoBehaviour
     {
         Application.Quit();
     }
+
 
     public void OpenShopWindow()
     {
@@ -84,6 +89,24 @@ public class MenuHandler : MonoBehaviour
 
     private void Update()
     {
+        if (EnemyDrops.amountReoRecycle < 10)
+        {
+            //recycle.interactable = false;
+        }
+        else
+        {
+           // recycle.interactable = true;
+        }
+
+        if (EnemyDrops.amountReoRecycle < 10)
+        {
+           // upgrade.interactable = false;
+        }
+        else
+        {
+            //upgrade.interactable = true;
+        }
+
         if (PlayerMovement.openMenu)
         {
             OpenPauseMenu();
@@ -95,6 +118,11 @@ public class MenuHandler : MonoBehaviour
         }
     }
 
+    public void OnRecycleClick()
+    {
+        EnemyDrops drops = new EnemyDrops();
+        //drops.TrashPoints - 10;
+    }
 
     /// <summary>
     /// opens credits window

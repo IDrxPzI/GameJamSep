@@ -30,7 +30,7 @@ public class Weapon : MonoBehaviour
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out RaycastHit hitInfo))
         {
             Vector3 direction = hitInfo.point - transform.position;
-            transform.rotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.LookRotation(-direction);
         }
     }
 
