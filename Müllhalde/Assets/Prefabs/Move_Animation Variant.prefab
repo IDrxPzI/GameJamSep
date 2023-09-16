@@ -147,6 +147,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7050f0a4d84bc9944b53279d5a3580c5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4372397290719783675}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7050f0a4d84bc9944b53279d5a3580c5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5993190718315959853}
   m_SourcePrefab: {fileID: 100100000, guid: 7050f0a4d84bc9944b53279d5a3580c5, type: 3}
 --- !u!1 &5910908276625104260 stripped
 GameObject:
@@ -212,7 +215,7 @@ MonoBehaviour:
   projectile: {fileID: 2287911422586967025, guid: f2327495edbf26e4aa8d521346102f86, type: 3}
   point: {fileID: 8162730493390404448}
   speed: 20
-  maxDistance: 2
+  maxDistance: 5
   isWait: 0
   slimeHP: 1
   slimeAvoidSpeed: 20
@@ -310,6 +313,21 @@ CapsuleCollider:
   m_Height: 0
   m_Direction: 1
   m_Center: {x: 0, y: 0.01, z: 0}
+--- !u!114 &5993190718315959853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5910908276625104260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20cdfbf7fc3a19c47a92e8e47d23a394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 100
+  Damage: 100
+  minScale: {x: 0.4, y: 0.4, z: 0.4}
 --- !u!4 &6434539331755935550 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7050f0a4d84bc9944b53279d5a3580c5, type: 3}

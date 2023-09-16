@@ -146,4 +146,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c8975fd8377cc34ebb191bb2e6e8ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slime: {fileID: 7217199025757697083, guid: b797e268306788241953121fae1b0311, type: 3}
+  slime: {fileID: 5910908276625104260, guid: a9312adab185a8a4688ee770e6d615b3, type: 3}
+  isWait: 1
