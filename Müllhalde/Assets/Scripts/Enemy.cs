@@ -103,8 +103,4 @@ public class Enemy : MonoBehaviour
 
         transform.localScale = objectScale;
     }
-
-    private void OnDestroy()
-    {
-    }
 }

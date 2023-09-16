@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -8,6 +9,8 @@ using Random = UnityEngine.Random;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager levelManager;
+
+    [SerializeField] private TextMeshProUGUI waveText;
 
     [SerializeField] private InputActionAsset player;
 
@@ -18,6 +21,7 @@ public class LevelManager : MonoBehaviour
     private static int currentWave = 1;
 
     private bool waveActive;
+    private bool countUp;
 
     private void Awake()
     {
@@ -36,25 +40,34 @@ public class LevelManager : MonoBehaviour
     {
         //test der spawn funktionalität
         StartLevel();
+        
     }
 
     private void Update()
     {
         var openShopMenu = player.FindAction("OpenShopMenu");
+        var startNewWave = player.FindAction("StartNextWave");
+
 
         if (waveActive)
         {
+            startNewWave.Disable();
             openShopMenu.Disable();
         }
         else
         {
             openShopMenu.Enable();
         }
+
+        LevelEnd();
     }
 
     void StartLevel()
     {
+        UpdateWaveText();
+
         waveActive = true;
+        countUp = false;
 
         enemySpawnAmount = Random.Range(2 + currentWave, 4 + currentWave);
 
@@ -76,22 +89,28 @@ public class LevelManager : MonoBehaviour
 
     void LevelEnd()
     {
-        //if (transform.childCount >= 0)
-        //{
-        //    currentWave++;
-        //    WaveFinished();
-        //}
+        if (transform.childCount <= 0 && !countUp)
+        {
+            currentWave++;
+            countUp = true;
+            WaveFinished();
+        }
     }
 
     void WaveFinished()
     {
         //Show Levelstart Button
         //Show direction of the shop? / open shop on button
+        var startNewWave = player.FindAction("StartNextWave");
+        startNewWave.Enable();
 
-        //GameEvents.Instance.onDestroyObject -= LevelEnd;
 
-        currentWave++;
         waveActive = false;
+    }
+
+    void UpdateWaveText()
+    {
+        waveText.SetText($"Wave {currentWave}");
     }
 }
 
