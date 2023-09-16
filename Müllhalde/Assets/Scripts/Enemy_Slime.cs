@@ -34,7 +34,7 @@ public class Enemy_Slime : MonoBehaviour
         if (enemy.gameObject.tag != "Enemy") return;
         Vector3 avoidDirection = enemy.gameObject.transform.position - transform.position;
         avoidDirection.Normalize();
-        rb.velocity = new Vector3(avoidDirection.x * slimeAvoidSpeed*-1, 0f, avoidDirection.z* slimeAvoidSpeed);
+        rb.velocity = new Vector3(avoidDirection.x * slimeAvoidSpeed*-1, 0f, avoidDirection.z* slimeAvoidSpeed*-1);
         Debug.Log(avoidDirection);
     }
 }
