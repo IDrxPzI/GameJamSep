@@ -26,7 +26,7 @@ public class Enemy_Slime : MonoBehaviour
 
     private void Awake()
     {
-
+        player = GetComponent<GameObject>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
 
