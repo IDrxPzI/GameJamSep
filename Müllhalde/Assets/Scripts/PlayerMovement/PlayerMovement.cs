@@ -24,7 +24,9 @@ public class PlayerMovement : MonoBehaviour
     private bool running;
     [SerializeField] private bool isGrounded;
     public static bool triggered { get; private set; }
-    public static bool openMenu { get; private set; }
+    public static bool openMenu { get; private set; }  
+    public static bool openShopMenu { get; private set; }
+
     public static int getInput { get; private set; }
 
 
@@ -101,6 +103,14 @@ public class PlayerMovement : MonoBehaviour
             openMenu = true;
         else if (context.canceled)
             openMenu = false;
+    }
+    
+    public void OnOpenShopMenu(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            openShopMenu = true;
+        else if (context.canceled)
+            openShopMenu = false;
     }
 
     #endregion

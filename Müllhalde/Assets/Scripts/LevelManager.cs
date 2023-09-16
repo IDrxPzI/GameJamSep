@@ -1,37 +1,97 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class LevelManager : MonoBehaviour
 {
+    public static LevelManager levelManager;
+
+    [SerializeField] private InputActionAsset player;
+
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private int enemySpawnAmount;
 
-    [SerializeField] private EnemyType[] enemys;
+    private static int currentWave = 1;
 
-    private Material enemyMaterial;
+    private bool waveActive;
+
+    private void Awake()
+    {
+        if (levelManager == null)
+        {
+            levelManager = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     private void Start()
     {
-        enemyMaterial = enemyPrefab.GetComponent<MeshRenderer>().sharedMaterial;
-
         //test der spawn funktionalität
         StartLevel();
     }
 
+    private void Update()
+    {
+        var openShopMenu = player.FindAction("OpenShopMenu");
+
+        if (waveActive)
+        {
+            openShopMenu.Disable();
+        }
+        else
+        {
+            openShopMenu.Enable();
+        }
+    }
+
     void StartLevel()
     {
-        // Dictionary<GameObject, EnemyType> enemyTypesDic = new Dictionary<GameObject, EnemyType>();
+        waveActive = true;
+
+        enemySpawnAmount = Random.Range(2 + currentWave, 4 + currentWave);
 
         for (int i = 0; i < enemySpawnAmount; i++)
         {
             int randomPosition = Random.Range(0, spawnPoints.Length);
             var enemy = Instantiate(enemyPrefab, spawnPoints[randomPosition]);
-
-            //enemyTypesDic.Add((GameObject)Instantiate(enemyPrefab, spawnPoints[randomPosition]), new EnemyType());
+            enemy.transform.parent = transform;
         }
+    }
+
+    public void StartNextWave(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            StartLevel();
+        }
+    }
+
+    void LevelEnd()
+    {
+        //if (transform.childCount >= 0)
+        //{
+        //    currentWave++;
+        //    WaveFinished();
+        //}
+    }
+
+    void WaveFinished()
+    {
+        //Show Levelstart Button
+        //Show direction of the shop? / open shop on button
+
+        //GameEvents.Instance.onDestroyObject -= LevelEnd;
+
+        currentWave++;
+        waveActive = false;
     }
 }
 

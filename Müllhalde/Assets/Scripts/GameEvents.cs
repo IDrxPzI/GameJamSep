@@ -7,7 +7,7 @@ public class GameEvents : MonoBehaviour
 {
     public static GameEvents Instance;
 
-    public event Action onTargetHit;
+    public event Action onDestroyObject;
 
     // Start is called before the first frame update
     void Awake()
@@ -26,11 +26,11 @@ public class GameEvents : MonoBehaviour
     /// <summary>
     /// call event when target got hit
     /// </summary>
-    public void TargetHitEvent()
+    public void LevelEndEvent()
     {
-        if (onTargetHit != null)
+        if (onDestroyObject != null)
         {
-            onTargetHit();
+            onDestroyObject();
         }
     }
 }
