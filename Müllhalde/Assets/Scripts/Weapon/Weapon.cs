@@ -8,9 +8,11 @@ using UnityEngine.InputSystem;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] private int currentWeapon;
+    [SerializeField] public static int currentWeapon;
 
-    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] public GameObject weaponPrefab;
+    
+    [SerializeField] public GameObject bulletPrefab;
 
     [SerializeField] private Camera mainCamera;
 
@@ -86,7 +88,14 @@ public class Weapon : MonoBehaviour
 [System.Serializable]
 struct Weapons
 {
-    public Mesh weaponMesh;
+    public GameObject weaponPrefab;
     public int ID;
     public int damage;
+
+    public Weapons(GameObject _prefab,int _ID,int _damage)
+    {
+        weaponPrefab = null;
+        ID = 0;
+        damage = 0;
+    }
 }
