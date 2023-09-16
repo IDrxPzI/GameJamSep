@@ -4,13 +4,14 @@ using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class EnemyDrops 
+public class EnemyDrops
 {
     private itemsToDrop[] item;
-    public static int[] amountTrash = new int[256];
-    public static int[] amountReoRecycle = new int[256];
+    public static int amountTrash = 0;
+    public static int amountReoRecycle = 0;
 
-    public int[] ReoPoints => amountReoRecycle;
+    public int ReoPoints => amountReoRecycle;
+    public int TrashPoints => amountTrash;
 
     enum itemsToDrop
     {
@@ -36,18 +37,18 @@ public class EnemyDrops
 
             if (items <= (itemsToDrop)3)
             {
-                amountTrash[i]++;
+                amountTrash++;
             }
             else
             {
-                amountReoRecycle[i]++;
+                amountReoRecycle++;
             }
 
             Debug.LogWarning($"item to drop{newitem[i]}");
-            Debug.Log($"you currently have {amountTrash[i]} trash");
-            Debug.Log($"you currently have {amountReoRecycle[i]} reorecycle");
+            Debug.Log($"you currently have {amountTrash} trash");
+            Debug.Log($"you currently have {amountReoRecycle} reorecycle");
 
-            LevelManager.ReoRecyclePoints.SetText($"{amountReoRecycle[i]}");
+            //LevelManager.ReoRecyclePoints.SetText($"{amountReoRecycle[i]}");
         }
     }
 }

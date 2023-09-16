@@ -12,8 +12,8 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private GameObject showInfoUI;
 
-    public static TextMeshProUGUI ReoRecyclePoints;
-    public static TextMeshProUGUI trashPoints;
+    [SerializeField] private TextMeshProUGUI ReoRecyclePoints;
+    [SerializeField] private TextMeshProUGUI trashPoints;
     [SerializeField] private TextMeshProUGUI waveText;
 
     [SerializeField] private InputActionAsset player;
@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour
     private bool waveActive;
     private bool countUp;
 
-    EnemyDrops drops = new EnemyDrops();
+    private EnemyDrops drops;
 
     private void Awake()
     {
@@ -44,6 +44,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        drops = new EnemyDrops();
         //test der spawn funktionalität
         StartLevel();
     }
@@ -65,8 +66,9 @@ public class LevelManager : MonoBehaviour
 
         LevelEnd();
 
+
         ReoRecyclePoints.SetText($"{drops.ReoPoints}");
-        trashPoints.SetText($"{EnemyDrops.amountTrash}");
+        trashPoints.SetText($"{drops.TrashPoints}");
     }
 
     void StartLevel()
