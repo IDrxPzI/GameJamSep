@@ -35,7 +35,8 @@ Transform:
   m_LocalPosition: {x: 0.2761364, y: 1.04, z: 7.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3426438245415857465}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7498873698017576912
@@ -122,8 +123,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3336031c002fa36478949d770e57c394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 7938776877990937954, guid: a4de75dd01d69f24caa81f253e423d2c, type: 3}
+  projectile: {fileID: 2287911422586967025, guid: f2327495edbf26e4aa8d521346102f86, type: 3}
+  point: {fileID: 3426438245415857465}
+  speed: 20
+  maxDistance: 2
+  isWait: 0
+  slimeHP: 1
   slimeAvoidSpeed: 20
+  enemystate: 0
 --- !u!54 &3595241480748719138
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -194,3 +202,34 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &8676591940110583309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3426438245415857465}
+  m_Layer: 0
+  m_Name: TransformShoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3426438245415857465
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8676591940110583309}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.88}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5040384157486149729}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
