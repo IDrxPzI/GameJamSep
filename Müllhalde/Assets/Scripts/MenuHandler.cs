@@ -24,6 +24,13 @@ public class MenuHandler : MonoBehaviour
 
     [SerializeField] private GameObject credits;
 
+    private EnemyDrops drops;
+
+    private void Start()
+    {
+        drops = new EnemyDrops();
+    }
+
     /// <summary>
     /// starts the first level of the game
     /// </summary>
@@ -75,12 +82,9 @@ public class MenuHandler : MonoBehaviour
 
     public void UpgradeWeapon()
     {
+        Weapon.currentWeapon += 1;
+        EnemyDrops.amountReoRecycle -= 10;
     }
-
-    public void ChangeCurrency()
-    {
-    }
-
 
     public void RestartGame()
     {
@@ -89,22 +93,22 @@ public class MenuHandler : MonoBehaviour
 
     private void Update()
     {
-        if (EnemyDrops.amountReoRecycle < 10)
+        if (EnemyDrops.amountTrash < 10)
         {
-            //recycle.interactable = false;
+            recycle.interactable = false;
         }
         else
         {
-           // recycle.interactable = true;
+            recycle.interactable = true;
         }
 
         if (EnemyDrops.amountReoRecycle < 10)
         {
-           // upgrade.interactable = false;
+            upgrade.interactable = false;
         }
         else
         {
-            //upgrade.interactable = true;
+            upgrade.interactable = true;
         }
 
         if (PlayerMovement.openMenu)
@@ -120,8 +124,8 @@ public class MenuHandler : MonoBehaviour
 
     public void OnRecycleClick()
     {
-        EnemyDrops drops = new EnemyDrops();
-        //drops.TrashPoints - 10;
+        EnemyDrops.amountTrash -= 10;
+        EnemyDrops.amountReoRecycle += 1;
     }
 
     /// <summary>
