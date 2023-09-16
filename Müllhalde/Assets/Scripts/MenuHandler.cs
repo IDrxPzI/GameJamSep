@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -9,9 +10,13 @@ public class MenuHandler : MonoBehaviour
 {
     [SerializeField] private InputActionAsset player;
 
+    [SerializeField] private TextMeshProUGUI ReoRecyclePoints;
+    [SerializeField] private TextMeshProUGUI trashPoints;
+
     [Header("Windows")] [SerializeField] private GameObject crosshair;
     [SerializeField] private GameObject shopWindow;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject showInfoUI;
 
     [SerializeField] private GameObject credits;
 
@@ -42,11 +47,12 @@ public class MenuHandler : MonoBehaviour
 
     public void OpenShopWindow()
     {
+        showInfoUI.SetActive(false);
         player.Disable();
 
         shopWindow.SetActive(true);
-
         crosshair.SetActive(false);
+
 
         Cursor.lockState = CursorLockMode.None;
     }
@@ -54,8 +60,9 @@ public class MenuHandler : MonoBehaviour
     public void CloseShopWindow()
     {
         player.Enable();
-        shopWindow.SetActive(false);
 
+        shopWindow.SetActive(false);
+        showInfoUI.SetActive(true);
         crosshair.SetActive(true);
 
         Cursor.lockState = CursorLockMode.Locked;

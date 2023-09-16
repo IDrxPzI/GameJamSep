@@ -10,18 +10,24 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager levelManager;
 
+    [SerializeField] private GameObject showInfoUI;
+
+    [SerializeField] private TextMeshProUGUI ReoRecyclePoints;
+    [SerializeField] private TextMeshProUGUI trashPoints;
     [SerializeField] private TextMeshProUGUI waveText;
 
     [SerializeField] private InputActionAsset player;
 
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private int enemySpawnAmount;
+    private int enemySpawnAmount;
 
     private static int currentWave = 1;
 
     private bool waveActive;
     private bool countUp;
+
+    private EnemyDrops drops;
 
     private void Awake()
     {
@@ -38,16 +44,15 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        drops = new EnemyDrops();
         //test der spawn funktionalität
         StartLevel();
-        
     }
 
     private void Update()
     {
         var openShopMenu = player.FindAction("OpenShopMenu");
         var startNewWave = player.FindAction("StartNextWave");
-
 
         if (waveActive)
         {
@@ -60,10 +65,16 @@ public class LevelManager : MonoBehaviour
         }
 
         LevelEnd();
+
+
+        ReoRecyclePoints.SetText($"{drops.ReoPoints}");
+        trashPoints.SetText($"{drops.TrashPoints}");
     }
 
     void StartLevel()
     {
+        showInfoUI.SetActive(false);
+
         UpdateWaveText();
 
         waveActive = true;
@@ -104,6 +115,8 @@ public class LevelManager : MonoBehaviour
         var startNewWave = player.FindAction("StartNextWave");
         startNewWave.Enable();
 
+        waveText.SetText($"Wave Finished");
+        showInfoUI.SetActive(true);
 
         waveActive = false;
     }
