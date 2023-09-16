@@ -119,4 +119,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 100
+  Damage: 100
   minScale: {x: 0.4, y: 0.4, z: 0.4}
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enemyPrefab: {fileID: 3484750539778237191}
+  enemys:
+  - enemyMaterial: {fileID: 2100000, guid: 5505fc2d86e427246bad74d5bc398945, type: 2}
+    enemyHP: 100
+    enemyDamage: 5
+  - enemyMaterial: {fileID: 2100000, guid: d9197e69262154347b58255d2ce43018, type: 2}
+    enemyHP: 150
+    enemyDamage: 10
+  - enemyMaterial: {fileID: 2100000, guid: f4b70c7665c8ed642bfa873487364f17, type: 2}
+    enemyHP: 200
+    enemyDamage: 15
