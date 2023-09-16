@@ -9,5 +9,7 @@ public class PlayerHP : MonoBehaviour
     public void TakeDamage(int amount)
     {
         HP -= amount;
+        
+        
     }
 }
