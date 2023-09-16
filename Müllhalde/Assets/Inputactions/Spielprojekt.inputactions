@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Interact",
+                    "name": "StartNextWave",
                     "type": "Button",
                     "id": "49945429-bf6c-476c-9bcf-d6dc26017a33",
                     "expectedControlType": "Button",
@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PickUpColor",
+                    "name": "OpenShopMenu",
                     "type": "Button",
                     "id": "5b3b68d1-b8a1-407f-9962-29a19eca2cda",
                     "expectedControlType": "Button",
@@ -346,11 +346,11 @@
                 {
                     "name": "",
                     "id": "4583a3f5-8d3e-43ea-a157-47e3f1865e02",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Interact",
+                    "action": "StartNextWave",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -361,7 +361,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Interact",
+                    "action": "StartNextWave",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -394,7 +394,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PickUpColor",
+                    "action": "OpenShopMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -405,7 +405,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PickUpColor",
+                    "action": "OpenShopMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

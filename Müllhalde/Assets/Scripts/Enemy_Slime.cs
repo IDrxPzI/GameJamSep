@@ -1,13 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class Enemy_Slime : MonoBehaviour
 {
     public GameObject player;
-    public float maxDistance = 2;
+    public GameObject projectile;
+    public Transform point;
+    public float speed = 5;
+    public float maxDistance = 5;
+    public bool isWait = false;
+    public int slimeHP = 1;
 
     public float slimeAvoidSpeed = 1f;
 
@@ -19,38 +26,76 @@ public class Enemy_Slime : MonoBehaviour
 
     private void Awake()
     {
+
         navMeshAgent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
+
     }
     // Start is called before the first frame update
     void Start()
     {
 
     }
-
+    private void Update()
+    {
+        navMeshAgent.SetDestination(player.transform.position);
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
+
         if (enemystate == Enemystate.Chase)
         {
             navMeshAgent.isStopped = false;
-            navMeshAgent.SetDestination(player.transform.position);
+            
         }
         if (Distanz(transform.position, player.transform.position) <= maxDistance)
         {
             enemystate = Enemystate.Attack;
             navMeshAgent.isStopped = true;
         }
-        if (Distanz(transform.position, player.transform.position) > maxDistance)
+        if (enemystate == Enemystate.Attack && isWait == false)
         {
-
+            isWait = true;
+            StartCoroutine(WaitBeforeGroundCheck());
         }
+
+
+    }
+
+    private IEnumerator WaitBeforeGroundCheck()
+    {
+        //GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
+        transform.LookAt(player.transform);
+        Attack();
+
+        yield return new WaitForSeconds(2f);
+        enemystate = Enemystate.Chase;
+        isWait = false;
+
+    }
+    void Attack()
+    {
+
+        //Animation 
+        if (slimeHP > 1)
+        {
+            slimeHP--;
+            GameObject bul = (GameObject)Instantiate(projectile, point.transform.position, Quaternion.identity);
+            bul.gameObject.GetComponent<Rigidbody>().velocity = point.forward * speed;
+        }
+        else
+        {
+            gameObject.GetComponent<Rigidbody>().velocity = point.forward * speed;
+        }
+
     }
 
 
 
     private void OnTriggerEnter(Collider enemy)
     {
+
         if (enemy.gameObject.tag != "Enemy") return;
         Vector3 avoidDirection = enemy.gameObject.transform.position - transform.position;
         avoidDirection.Normalize();
