@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-           // other.collider.GetComponent<Enemy_Slime>().TakeDamage(1);
+           //other.collider.GetComponent<Enemy_Slime>().TakeDamage1(1);
            // GameEvents.Instance.TargetHitEvent();
 
             Destroy(gameObject);

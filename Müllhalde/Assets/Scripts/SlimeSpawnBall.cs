@@ -21,6 +21,7 @@ public class SlimeSpawnBall : MonoBehaviour
         {
             GameObject bul = (GameObject)Instantiate(slime, transform.position, Quaternion.identity);
             bul.transform.localScale = new Vector3(40, 40, 40);
+            bul.transform.parent = GameObject.FindGameObjectWithTag("LevelManager").transform;
         }
         Destroy(gameObject);
         

@@ -120,11 +120,12 @@ public class Enemy_Slime : MonoBehaviour
     public void TakeDamage1(int amount)
     {
         slimeHP -= amount;
+        Destroy(Instantiate(audio_Death, new Vector3(0, 0, 0), Quaternion.identity), 5);
+
         if (slimeHP <= 0)
         {
             death = true;
 
-                Destroy(Instantiate(audio_Death, new Vector3(0, 0, 0), Quaternion.identity), 5);
             PlayDeathAnimation();
         }
 
@@ -150,8 +151,8 @@ public class Enemy_Slime : MonoBehaviour
         if (slimeHP <= 0)
         {
             //später einfügen
-            //EnemyDrops drops = new EnemyDrops();
-            // drops.DropItems();
+            EnemyDrops drops = new EnemyDrops();
+            drops.DropItems();
             Destroy(gameObject);
         }
     }
@@ -170,6 +171,7 @@ public class Enemy_Slime : MonoBehaviour
         TakeDamage1(1);
         GameObject bul = (GameObject)Instantiate(projectile, point.transform.position, Quaternion.identity);
         bul.gameObject.GetComponent<Rigidbody>().velocity = point.forward * speed;
+
     }
 
     public void Greift_Nicht_Mehr_An()

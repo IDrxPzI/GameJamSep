@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Death_Sound_Slime
+  - LevelManager
   layers:
   - Default
   - TransparentFX
