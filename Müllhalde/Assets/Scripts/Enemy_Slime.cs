@@ -17,7 +17,7 @@ public class Enemy_Slime : MonoBehaviour
     public int slimeHP = 1;
 
     bool death, GreiftAn;
-
+    public AudioSource ad;
     public float slimeAvoidSpeed = 1f;
 
     [SerializeField] private Vector3 minScale = new Vector3(0.4f, 0.4f, 0.4f);
@@ -40,6 +40,7 @@ public class Enemy_Slime : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         navMeshAgent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
+        ad = GameObject.FindGameObjectWithTag("Death_Sound_Slime").GetComponent<AudioSource>();
 
     }
     // Start is called before the first frame update
@@ -129,6 +130,10 @@ public class Enemy_Slime : MonoBehaviour
         {
             death = true;
             Debug.Log("habe weniger als 0 hp");
+            if (ad != null)
+            {
+                ad.Play();
+            }
             PlayDeathAnimation();
         }
 

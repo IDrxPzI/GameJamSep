@@ -2,6 +2,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerInput), typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
@@ -14,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     private float runSpeed;
     private float runTime = 2f;
 
+    public TMP_Text Life_Text;
+    public Image Lebens_Img;
     public int Life = 100;
 
     bool canNotGetDmg;
@@ -121,6 +125,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        Aktualisier_Life();
         playerController = GetComponent<CharacterController>();
         mouselook = GetComponentsInChildren<MouseLook>();
     }
@@ -169,10 +174,13 @@ public class PlayerMovement : MonoBehaviour
         {
             canNotGetDmg = true;
             Life -= Dmg;
-            Invoke("boolCanGetDmg",2);
+            Life_Text.text = "100/" + Life;
+            Invoke("boolCanGetDmg",1);
         }
         if (Life <= 0)
         {
+            Life_Text.text = "100/" + 0;
+            Lebens_Img.fillAmount = 0;
             //Gameover
         }
     }
@@ -190,5 +198,12 @@ public class PlayerMovement : MonoBehaviour
         {
             mLook.Look(look);
         }
+    }
+
+    public void Aktualisier_Life()
+    {
+        Life_Text.text = "100/" + Life;
+        Debug.Log(Life / 100f);
+        Lebens_Img.fillAmount = Life / 100f;
     }
 }
