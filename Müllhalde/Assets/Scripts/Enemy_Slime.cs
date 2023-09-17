@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.SceneManagement;
 
 public class Enemy_Slime : MonoBehaviour
@@ -18,7 +20,7 @@ public class Enemy_Slime : MonoBehaviour
     public int slimeHP = 1;
 
     public bool death, GreiftAn;
-    public float slimeAvoidSpeed = 1f;
+    public float slimeAvoidSpeed = 10000f;
 
     [SerializeField] private Vector3 minScale = new Vector3(0.4f, 0.4f, 0.4f);
 
@@ -69,7 +71,6 @@ public class Enemy_Slime : MonoBehaviour
             StartCoroutine(WaitBeforeGroundCheck());
         }
 
-
     }
 
     private IEnumerator WaitBeforeGroundCheck()
@@ -103,15 +104,17 @@ public class Enemy_Slime : MonoBehaviour
 
     private void OnTriggerEnter(Collider enemy)
     {
-        if (enemy.gameObject.tag == "Enemy") return;
-        Vector3 avoidDirection = enemy.gameObject.transform.position - transform.position;
-        avoidDirection.Normalize();
-        rb.velocity = new Vector3(avoidDirection.x * slimeAvoidSpeed * -1, 0f, avoidDirection.z * slimeAvoidSpeed * -1);
         if (enemy.gameObject.tag == "Player")
         {
             DoDmg(10);
         }
+        if (enemy.gameObject.tag != "Enemy") return;
+        Vector3 avoidDirection = enemy.gameObject.transform.position - transform.position;
+        avoidDirection.Normalize();
+        rb.velocity = new Vector3(avoidDirection.x * slimeAvoidSpeed * -1, 0f, avoidDirection.z * slimeAvoidSpeed * -1);
+        
     }
+    
     public static float Distanz(Vector3 _v1, Vector3 _v2)
     {
         return (float)Math.Pow(((_v1.x - _v2.x) * (_v1.x - _v2.x)) + ((_v1.y - _v2.y) * (_v1.y - _v2.y)) + ((_v1.z - _v2.z) * (_v1.z - _v2.z)), 0.5);
