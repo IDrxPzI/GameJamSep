@@ -18,7 +18,6 @@ public class Enemy_Slime : MonoBehaviour
     public int slimeHP = 1;
 
     public bool death, GreiftAn;
-    public AudioSource ad;
     public float slimeAvoidSpeed = 1f;
 
     [SerializeField] private Vector3 minScale = new Vector3(0.4f, 0.4f, 0.4f);
@@ -41,7 +40,6 @@ public class Enemy_Slime : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         navMeshAgent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
-        ad = GameObject.FindGameObjectWithTag("Death_Sound_Slime").GetComponent<AudioSource>();
 
     }
     private void Update()
@@ -92,7 +90,6 @@ public class Enemy_Slime : MonoBehaviour
         if (slimeHP > 1)
         {
             GreiftAn = false;
-            TakeDamage(1);
             anim.SetTrigger("attack");
         }            
         else
@@ -120,18 +117,14 @@ public class Enemy_Slime : MonoBehaviour
         return (float)Math.Pow(((_v1.x - _v2.x) * (_v1.x - _v2.x)) + ((_v1.y - _v2.y) * (_v1.y - _v2.y)) + ((_v1.z - _v2.z) * (_v1.z - _v2.z)), 0.5);
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage1(int amount)
     {
         slimeHP -= amount;
         if (slimeHP <= 0)
         {
             death = true;
-            if (ad != null)
-            {
-                Destroy(Instantiate(audio_Death, new Vector3(0, 0, 0), Quaternion.identity), 5);
 
-                //  ad.Play();
-            }
+                Destroy(Instantiate(audio_Death, new Vector3(0, 0, 0), Quaternion.identity), 5);
             PlayDeathAnimation();
         }
 
@@ -174,7 +167,7 @@ public class Enemy_Slime : MonoBehaviour
 
     public void Shoot_Kugel()
     {
-        TakeDamage(1);
+        TakeDamage1(1);
         GameObject bul = (GameObject)Instantiate(projectile, point.transform.position, Quaternion.identity);
         bul.gameObject.GetComponent<Rigidbody>().velocity = point.forward * speed;
     }

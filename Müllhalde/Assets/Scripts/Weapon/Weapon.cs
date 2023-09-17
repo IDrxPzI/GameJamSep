@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private Camera mainCamera;
 
     [SerializeField] private float bulletSpeed = 1;
-    [SerializeField] private int damage = 10;
+    [SerializeField] private int damage = 1;
     [SerializeField] private float range = 100;
 
     [SerializeField] private Weapons[] weapons;
@@ -59,7 +59,7 @@ public class Weapon : MonoBehaviour
 
                 if (enemy != null)
                 {
-                    enemy.TakeDamage(WeaponDamage(currentWeapon));
+                     enemy.TakeDamage1(WeaponDamage(currentWeapon));
                 }
             }
         }
