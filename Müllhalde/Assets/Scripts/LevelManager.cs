@@ -44,9 +44,10 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        StartLevel();
+
         drops = new EnemyDrops();
         //test der spawn funktionalität
-        StartLevel();
     }
 
     private void Update()
@@ -71,7 +72,7 @@ public class LevelManager : MonoBehaviour
         trashPoints.SetText($"{drops.TrashPoints}");
     }
 
-    void StartLevel()
+    public void StartLevel()
     {
         showInfoUI.SetActive(false);
 
@@ -87,6 +88,7 @@ public class LevelManager : MonoBehaviour
             int randomPosition = Random.Range(0, spawnPoints.Length);
             var enemy = Instantiate(enemyPrefab, spawnPoints[randomPosition]);
             enemy.transform.parent = transform;
+            enemy.GetComponent<Enemy_Slime>().slimeHP = 10;
         }
     }
 

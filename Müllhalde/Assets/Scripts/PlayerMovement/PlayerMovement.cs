@@ -2,7 +2,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using TMPro;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerInput), typeof(CharacterController))]
@@ -174,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
         {
             canNotGetDmg = true;
             Life -= Dmg;
-            Life_Text.text = "100/" + Life;
+            Aktualisier_Life();
             Invoke("boolCanGetDmg",1);
         }
         if (Life <= 0)
@@ -187,6 +186,7 @@ public class PlayerMovement : MonoBehaviour
 
     void boolCanGetDmg()
     {
+        Debug.Log("kannschadenbekomen");
         canNotGetDmg = false;
     }
 
@@ -202,8 +202,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void Aktualisier_Life()
     {
-        Life_Text.text = "100/" + Life;
-        Debug.Log(Life / 100f);
-        Lebens_Img.fillAmount = Life / 100f;
+        if (Life_Text != null)
+        {
+            Life_Text.text = "100/" + Life;
+            Lebens_Img.fillAmount = Life / 100f;
+        }
     }
 }

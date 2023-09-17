@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class Enemy_Slime : MonoBehaviour
 {
+    public GameObject audio_Death;
     public GameObject player;
     public GameObject projectile;
     public Transform point;
@@ -16,7 +17,7 @@ public class Enemy_Slime : MonoBehaviour
     public bool isWait = false;
     public int slimeHP = 1;
 
-    bool death, GreiftAn;
+    public bool death, GreiftAn;
     public AudioSource ad;
     public float slimeAvoidSpeed = 1f;
 
@@ -41,11 +42,6 @@ public class Enemy_Slime : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
         ad = GameObject.FindGameObjectWithTag("Death_Sound_Slime").GetComponent<AudioSource>();
-
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
 
     }
     private void Update()
@@ -96,9 +92,9 @@ public class Enemy_Slime : MonoBehaviour
         if (slimeHP > 1)
         {
             GreiftAn = false;
+            TakeDamage(1);
             anim.SetTrigger("attack");
         }            
-
         else
         {
             gameObject.GetComponent<Rigidbody>().velocity = point.forward * speed;
@@ -126,18 +122,19 @@ public class Enemy_Slime : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        slimeHP -= amount;
         if (slimeHP <= 0)
         {
             death = true;
-            Debug.Log("habe weniger als 0 hp");
             if (ad != null)
             {
-                ad.Play();
+                Destroy(Instantiate(audio_Death, new Vector3(0, 0, 0), Quaternion.identity), 5);
+
+                //  ad.Play();
             }
             PlayDeathAnimation();
         }
 
-        slimeHP -= amount;
 
         //compare scale to minScale to keep it from been to small
         var compareX = objectScale.x <= minScale.x;
@@ -162,7 +159,6 @@ public class Enemy_Slime : MonoBehaviour
             //später einfügen
             //EnemyDrops drops = new EnemyDrops();
             // drops.DropItems();
-            Debug.Log("tod Durch Animation");
             Destroy(gameObject);
         }
     }
@@ -170,6 +166,10 @@ public class Enemy_Slime : MonoBehaviour
     void PlayDeathAnimation()
     {
         anim.SetTrigger("death");
+        foreach (Collider c in GetComponents<Collider>())
+        {
+            c.enabled = false;
+    }
     }
 
     public void Shoot_Kugel()

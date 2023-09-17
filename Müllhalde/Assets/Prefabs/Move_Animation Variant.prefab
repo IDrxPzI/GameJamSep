@@ -143,9 +143,6 @@ PrefabInstance:
       addedObject: {fileID: 2596219980369918732}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7050f0a4d84bc9944b53279d5a3580c5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6435013213490568178}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7050f0a4d84bc9944b53279d5a3580c5, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 4372397290719783675}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7050f0a4d84bc9944b53279d5a3580c5, type: 3}
       insertIndex: -1
@@ -211,6 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3336031c002fa36478949d770e57c394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audio_Death: {fileID: 1129781178946973418, guid: ff662a91067ea0948a3638e0434a85a4, type: 3}
   player: {fileID: 7938776877990937954, guid: a4de75dd01d69f24caa81f253e423d2c, type: 3}
   projectile: {fileID: 2287911422586967025, guid: f2327495edbf26e4aa8d521346102f86, type: 3}
   point: {fileID: 8162730493390404448}
@@ -218,10 +216,13 @@ MonoBehaviour:
   maxDistance: 5
   isWait: 0
   slimeHP: 1
-  slimeAvoidSpeed: 20
+  death: 0
+  GreiftAn: 0
+  ad: {fileID: 9014915594415691312, guid: ff662a91067ea0948a3638e0434a85a4, type: 3}
+  slimeAvoidSpeed: 5
   minScale: {x: 0.4, y: 0.4, z: 0.4}
   enemystate: 0
-  anim: {fileID: 0}
+  anim: {fileID: 7180612398466233680}
 --- !u!54 &1678838611408249045
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -270,28 +271,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.0125
   m_Center: {x: 0, y: 0.003, z: 0}
---- !u!64 &6435013213490568178
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5910908276625104260}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 153020463115757833, guid: fb67dc265ef76f64fa05cb7b7f2ccdf2, type: 3}
 --- !u!136 &4372397290719783675
 CapsuleCollider:
   m_ObjectHideFlags: 0
