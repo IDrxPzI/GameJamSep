@@ -7,6 +7,9 @@ using UnityEngine.UI;
 [RequireComponent(typeof(PlayerInput), typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
+    public GameObject footstepA;
+    public GameObject footstepB;
+
     [SerializeField] private float playerSpeed;
     [SerializeField] private GameSettings gamesettings;
 
@@ -31,10 +34,12 @@ public class PlayerMovement : MonoBehaviour
     private bool running;
     [SerializeField] private bool isGrounded;
     public static bool triggered { get; private set; }
-    public static bool openMenu { get; private set; }  
+    public static bool openMenu { get; private set; }
     public static bool openShopMenu { get; private set; }
 
     public static int getInput { get; private set; }
+    private float timer = 0;
+    public int audioTurn = 0;
 
 
     #region InputActions
@@ -65,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         move = context.ReadValue<Vector2>();
+
     }
 
     /// <summary>
@@ -111,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
         else if (context.canceled)
             openMenu = false;
     }
-    
+
     public void OnOpenShopMenu(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -135,6 +141,9 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="direction"></param>
     private void Move(Vector2 direction)
     {
+        
+        
+
         isGrounded = playerController.isGrounded;
         if (isGrounded && playerVelocity.y < 0)
         {
@@ -168,6 +177,29 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        timer += Time.deltaTime;
+        Vector2 stayStill = new Vector2(0, 0);
+        if(move!=stayStill)
+        {
+            if (timer >= 1)
+            {
+                switch (audioTurn)
+                {
+                    case 0:
+                        footstepA.GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
+                        audioTurn = 1;
+                        timer = 0;
+                        Debug.Log("Step A");
+                        break;
+                    case 1:
+                        footstepB.GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
+                        audioTurn = 0;
+                        timer = 0;
+                        Debug.Log("Step B");
+                        break;
+                }
+            }
+        }
         if (Life <= 0)
         {
             Cursor.lockState = CursorLockMode.None;
@@ -181,7 +213,7 @@ public class PlayerMovement : MonoBehaviour
             canNotGetDmg = true;
             Life -= Dmg;
             Aktualisier_Life();
-            Invoke("boolCanGetDmg",1);
+            Invoke("boolCanGetDmg", 1);
         }
         if (Life <= 0)
         {
