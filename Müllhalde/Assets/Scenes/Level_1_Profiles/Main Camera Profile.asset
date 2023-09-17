@@ -21,10 +21,10 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 1.1
+    value: 1.03
   color:
     overrideState: 1
-    value: {r: 0.07596633, g: 0.44313726, b: 0, a: 1}
+    value: {r: 0, g: 0, b: 0, a: 1}
   ambientOnly:
     overrideState: 0
     value: 1
@@ -39,7 +39,7 @@ MonoBehaviour:
     value: -12
   thicknessModifier:
     overrideState: 1
-    value: 5
+    value: 1.6
   directLightingStrength:
     overrideState: 0
     value: 0
@@ -105,22 +105,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d65e486e4de6e5448a8fbb43dc8756a0, type: 3}
   m_Name: Grain
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
   colored:
-    overrideState: 0
+    overrideState: 1
     value: 1
   intensity:
-    overrideState: 0
-    value: 1
+    overrideState: 1
+    value: 0.017
   size:
-    overrideState: 0
-    value: 1.38
+    overrideState: 1
+    value: 2.19
   lumContrib:
-    overrideState: 0
-    value: 0.8
+    overrideState: 1
+    value: 0.214
 --- !u!114 &-1681823336332816639
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -205,11 +205,11 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   spectralLut:
-    overrideState: 0
+    overrideState: 1
     value: {fileID: 0}
     defaultState: 1
   intensity:
-    overrideState: 0
+    overrideState: 1
     value: 0
   fastMode:
     overrideState: 0
@@ -253,7 +253,7 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   gradingMode:
-    overrideState: 0
+    overrideState: 1
     value: 1
   externalLut:
     overrideState: 0
@@ -294,14 +294,14 @@ MonoBehaviour:
     overrideState: 0
     value: -20
   colorFilter:
-    overrideState: 0
-    value: {r: 1, g: 1, b: 1, a: 1}
+    overrideState: 1
+    value: {r: 0.78234106, g: 0.8679245, b: 0.4721727, a: 1}
   hueShift:
-    overrideState: 0
+    overrideState: 1
     value: 0
   saturation:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 11
   brightness:
     overrideState: 0
     value: 0
@@ -309,8 +309,8 @@ MonoBehaviour:
     overrideState: 1
     value: 0.67
   contrast:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 19
   mixerRedOutRedIn:
     overrideState: 0
     value: 100
@@ -340,13 +340,13 @@ MonoBehaviour:
     value: 100
   lift:
     overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0}
+    value: {x: 0.91534936, y: 0.93974394, z: 1, w: 0}
   gamma:
     overrideState: 0
     value: {x: 1, y: 1, z: 1, w: 0}
   gain:
-    overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0}
+    overrideState: 1
+    value: {x: 1, y: 1, z: 1, w: -0.0074908608}
   masterCurve:
     overrideState: 0
     value:
