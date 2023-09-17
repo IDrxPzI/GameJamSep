@@ -14,6 +14,10 @@ public class PlayerMovement : MonoBehaviour
     private float runSpeed;
     private float runTime = 2f;
 
+    public int Life = 100;
+
+    bool canNotGetDmg;
+
     private Vector2 move;
     private Vector2 look;
     private UnityEngine.Vector3 playerVelocity;
@@ -157,6 +161,25 @@ public class PlayerMovement : MonoBehaviour
                                       gamesettings.runSpeed);
             }
         }
+    }
+
+    public void GetDmg(int Dmg)
+    {
+        if (!canNotGetDmg)
+        {
+            canNotGetDmg = true;
+            Life -= Dmg;
+            Invoke("boolCanGetDmg",2);
+        }
+        if (Life <= 0)
+        {
+            //Gameover
+        }
+    }
+
+    void boolCanGetDmg()
+    {
+        canNotGetDmg = false;
     }
 
     private void Update()

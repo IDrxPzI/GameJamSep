@@ -20,10 +20,11 @@ public class SlimeSpawnBall : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == slime) return;
+        if (other.gameObject.tag == "Enemy") return;
         //StartCoroutine(waitForTask());
         GameObject bul = (GameObject)Instantiate(slime, transform.position, Quaternion.identity);
-        Destroy(this.gameObject);
+        bul.transform.localScale = new Vector3(40, 40, 40);
+        Destroy(gameObject);
         
     }
     //private IEnumerator waitForTask()

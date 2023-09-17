@@ -3658,7 +3658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1004611225
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4007,9 +4007,9 @@ RectTransform:
   - {fileID: 166927454}
   m_Father: {fileID: 1177897224}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 583.3333, y: -1250}
   m_SizeDelta: {x: 1000, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1055644722
@@ -5380,6 +5380,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: -944628639613478452, guid: 4bb2f1844a10b7048a22bda464eb2b97, type: 3}
+  weapon: {fileID: 0}
+  weaponPrefab:
+  - {fileID: 919132149487255237}
+  - {fileID: 919132148871657653}
+  - {fileID: 919132148016681680}
   upgrade: {fileID: 1055644722}
   recycle: {fileID: 1842569848}
   ReoRecyclePoints: {fileID: 0}
@@ -5833,9 +5838,9 @@ RectTransform:
   - {fileID: 1510229087}
   m_Father: {fileID: 1177897224}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1916.6665, y: -1250}
   m_SizeDelta: {x: 1000, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1761650437
@@ -6417,9 +6422,9 @@ RectTransform:
   - {fileID: 1825510582}
   m_Father: {fileID: 1177897224}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1250, y: -1250}
   m_SizeDelta: {x: 1000, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1842569848
@@ -7060,6 +7065,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3982166098781031888, guid: 8c7d12b671d9e694789638c4c51260a4, type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3982166098781031888, guid: 8c7d12b671d9e694789638c4c51260a4, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 963194227}
@@ -7082,6 +7091,10 @@ PrefabInstance:
     - target: {fileID: 4022231349609653000, guid: 8c7d12b671d9e694789638c4c51260a4, type: 3}
       propertyPath: m_Name
       value: weapon_base
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022231349609653000, guid: 8c7d12b671d9e694789638c4c51260a4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7137,7 +7150,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2725144729878441244, guid: a21e1f50955219b4197e292e26540c0a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.896
+      value: 0.808
       objectReference: {fileID: 0}
     - target: {fileID: 2725144729878441244, guid: a21e1f50955219b4197e292e26540c0a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7145,7 +7158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2725144729878441244, guid: a21e1f50955219b4197e292e26540c0a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.958
+      value: 0.92
       objectReference: {fileID: 0}
     - target: {fileID: 2725144729878441244, guid: a21e1f50955219b4197e292e26540c0a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7179,6 +7192,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: weapon_upgrade2
       objectReference: {fileID: 0}
+    - target: {fileID: 3673859868615039607, guid: a21e1f50955219b4197e292e26540c0a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9209893150843870339, guid: a21e1f50955219b4197e292e26540c0a, type: 3}
       propertyPath: mainCamera
       value: 
@@ -7200,13 +7217,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: weapon_upgrade1
       objectReference: {fileID: 0}
+    - target: {fileID: 969105803327956195, guid: 002c400365454f4419031e61622b6abe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7615837516230532108, guid: 002c400365454f4419031e61622b6abe, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 963194227}
     - target: {fileID: 9092117038289806954, guid: 002c400365454f4419031e61622b6abe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.832
+      value: 0.809
       objectReference: {fileID: 0}
     - target: {fileID: 9092117038289806954, guid: 002c400365454f4419031e61622b6abe, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7214,7 +7235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9092117038289806954, guid: 002c400365454f4419031e61622b6abe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.839
+      value: 0.836
       objectReference: {fileID: 0}
     - target: {fileID: 9092117038289806954, guid: 002c400365454f4419031e61622b6abe, type: 3}
       propertyPath: m_LocalRotation.w

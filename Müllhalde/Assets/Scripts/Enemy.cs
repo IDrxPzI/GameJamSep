@@ -6,16 +6,8 @@ using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] public int HP = 100;
-    [SerializeField] public int Damage = 100;
-    [SerializeField] private Vector3 minScale = new Vector3(0.4f, 0.4f, 0.4f);
 
-    private Vector3 objectScale;
 
-    private void Awake()
-    {
-        objectScale = transform.localScale;
-    }
 
     // public Enemy()
     // {
@@ -63,7 +55,7 @@ public class Enemy : MonoBehaviour
     //     }
     // }
 
-    private void Update()
+    /*private void Update()
     {
         DestroyGameobject();
     }
@@ -78,29 +70,6 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    public void TakeDamage(int amount)
-    {
-        if (HP <= 1)
-        {
-            Destroy(gameObject);
-        }
-
-        HP -= amount;
-
-        //compare scale to minScale to keep it from been to small
-        var compareX = objectScale.x <= minScale.x;
-        var compareY = objectScale.y <= minScale.y;
-        var compareZ = objectScale.z <= minScale.z;
-
-        if (compareX | compareY | compareZ)
-        {
-            objectScale = minScale;
-            return;
-        }
-
-        objectScale *= 0.85f;
-
-        transform.localScale = objectScale;
-    }
+    */
+   
 }
