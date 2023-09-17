@@ -5,10 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class UI_Handler : MonoBehaviour
 {
+    public AudioSource ad;
+    public Animator anim;
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
-
+        ad.Play();
+        anim.SetTrigger("start");
+        Invoke("loadWorld", 2);
     }
     
     public void ExitGame()
@@ -18,5 +21,9 @@ public class UI_Handler : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+    void loadWorld()
+    {
+        SceneManager.LoadScene(1);
     }
 }
