@@ -88,7 +88,7 @@ public class LevelManager : MonoBehaviour
             int randomPosition = Random.Range(0, spawnPoints.Length);
             var enemy = Instantiate(enemyPrefab, spawnPoints[randomPosition]);
             enemy.transform.parent = transform;
-            enemy.GetComponent<Enemy_Slime>().slimeHP = 5;
+            enemy.GetComponent<Enemy_Slime>().slimeHP = 3;
         }
     }
 

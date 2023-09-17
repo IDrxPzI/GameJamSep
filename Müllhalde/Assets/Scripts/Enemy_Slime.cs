@@ -120,10 +120,11 @@ public class Enemy_Slime : MonoBehaviour
     public void TakeDamage1(int amount)
     {
         slimeHP -= amount;
-        Destroy(Instantiate(audio_Death, new Vector3(0, 0, 0), Quaternion.identity), 5);
         if (slimeHP <= 0)
         {
             death = true;
+
+                Destroy(Instantiate(audio_Death, new Vector3(0, 0, 0), Quaternion.identity), 5);
             PlayDeathAnimation();
         }
 
