@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 4495537545575086112}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0061, z: 0.00874}
+  m_LocalPosition: {x: 0, y: 0.0061, z: 0.016}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -219,7 +219,9 @@ MonoBehaviour:
   isWait: 0
   slimeHP: 1
   slimeAvoidSpeed: 20
+  minScale: {x: 0.4, y: 0.4, z: 0.4}
   enemystate: 0
+  anim: {fileID: 0}
 --- !u!54 &1678838611408249045
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -325,9 +327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20cdfbf7fc3a19c47a92e8e47d23a394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
-  Damage: 100
-  minScale: {x: 0.4, y: 0.4, z: 0.4}
 --- !u!4 &6434539331755935550 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7050f0a4d84bc9944b53279d5a3580c5, type: 3}

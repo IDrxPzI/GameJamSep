@@ -23,6 +23,7 @@ public class SlimeSpawnBall : MonoBehaviour
         if (other.gameObject.tag == "Enemy") return;
         //StartCoroutine(waitForTask());
         GameObject bul = (GameObject)Instantiate(slime, transform.position, Quaternion.identity);
+        bul.transform.localScale = new Vector3(40, 40, 40);
         Destroy(gameObject);
         
     }

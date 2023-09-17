@@ -16,6 +16,8 @@ public class Enemy_Slime : MonoBehaviour
     public bool isWait = false;
     public int slimeHP = 1;
 
+    bool death, GreiftAn;
+
     public float slimeAvoidSpeed = 1f;
 
     [SerializeField] private Vector3 minScale = new Vector3(0.4f, 0.4f, 0.4f);
@@ -47,8 +49,10 @@ public class Enemy_Slime : MonoBehaviour
     }
     private void Update()
     {
-        
-        navMeshAgent.SetDestination(player.transform.position);
+        if (!death && !GreiftAn)
+        {
+            navMeshAgent.SetDestination(player.transform.position);
+        }
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -84,18 +88,14 @@ public class Enemy_Slime : MonoBehaviour
         isWait = false;
 
     }
-    void Attack()
+    public void Attack()
     {
 
         //Animation 
         if (slimeHP > 1)
         {
-            slimeHP-=11;
-            GameObject bul = (GameObject)Instantiate(projectile, point.transform.position, Quaternion.identity);
-            Debug.Log("Kugel:" + point.forward * speed);
-
-            bul.gameObject.GetComponent<Rigidbody>().velocity = point.forward * speed;
-            TakeDamage(1);
+            GreiftAn = false;
+            anim.SetTrigger("attack");
         }            
 
         else
@@ -109,11 +109,14 @@ public class Enemy_Slime : MonoBehaviour
 
     private void OnTriggerEnter(Collider enemy)
     {
-
-        if (enemy.gameObject.tag != "Enemy") return;
+        if (enemy.gameObject.tag == "Enemy") return;
         Vector3 avoidDirection = enemy.gameObject.transform.position - transform.position;
         avoidDirection.Normalize();
         rb.velocity = new Vector3(avoidDirection.x * slimeAvoidSpeed * -1, 0f, avoidDirection.z * slimeAvoidSpeed * -1);
+        if (enemy.gameObject.tag == "Player")
+        {
+            DoDmg(10);
+        }
     }
     public static float Distanz(Vector3 _v1, Vector3 _v2)
     {
@@ -124,6 +127,7 @@ public class Enemy_Slime : MonoBehaviour
     {
         if (slimeHP <= 0)
         {
+            death = true;
             Debug.Log("habe weniger als 0 hp");
             PlayDeathAnimation();
         }
@@ -161,6 +165,23 @@ public class Enemy_Slime : MonoBehaviour
     void PlayDeathAnimation()
     {
         anim.SetTrigger("death");
+    }
+
+    public void Shoot_Kugel()
+    {
+        TakeDamage(1);
+        GameObject bul = (GameObject)Instantiate(projectile, point.transform.position, Quaternion.identity);
+        bul.gameObject.GetComponent<Rigidbody>().velocity = point.forward * speed;
+    }
+
+    public void Greift_Nicht_Mehr_An()
+    {
+        GreiftAn = false;
+    }
+
+    void DoDmg(int dmg)
+    {
+        player.GetComponent<PlayerMovement>().GetDmg(dmg);
     }
 }
 
