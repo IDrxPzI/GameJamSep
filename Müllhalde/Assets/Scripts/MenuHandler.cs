@@ -160,18 +160,23 @@ public class MenuHandler : MonoBehaviour
 
         pauseMenu.SetActive(true);
 
-        //SceneManager.LoadSceneAsync("MainMenu");
-        //Debug.Log("Back to menu");
-
         Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0;
+    }
+
+    public void OpenMainMenu()
+    {
+        SceneManager.LoadSceneAsync("MainMenu");
     }
 
     public void ClosePauseMenu()
     {
         player.Enable();
 
+
         pauseMenu.SetActive(false);
 
         Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1;
     }
 }
