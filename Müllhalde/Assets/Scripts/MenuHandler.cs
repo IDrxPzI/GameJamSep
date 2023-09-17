@@ -166,6 +166,11 @@ public class MenuHandler : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
+    public void OpenMainMenu()
+    {
+        SceneManager.LoadSceneAsync("MainMenu");
+    }
+
     public void ClosePauseMenu()
     {
         player.Enable();
