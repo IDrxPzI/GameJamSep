@@ -18,9 +18,10 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.tag == "Enemy")
         {
-           // other.collider.GetComponent<Enemy_Slime>().TakeDamage(1);
+            Debug.Log("Slimgetroffen");
+            other.collider.GetComponent<Enemy_Slime>().TakeDamage1(1);
            // GameEvents.Instance.TargetHitEvent();
 
             Destroy(gameObject);
