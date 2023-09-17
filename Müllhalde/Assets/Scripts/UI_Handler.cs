@@ -13,6 +13,13 @@ public class UI_Handler : MonoBehaviour
         anim.SetTrigger("start");
         Invoke("loadWorld", 2);
     }
+
+    public void LoadCredits()
+    {
+        ad.Play();
+        anim.SetTrigger("start");
+        Invoke("loadCredits", 2);
+    }
     
     public void ExitGame()
     {
@@ -25,5 +32,15 @@ public class UI_Handler : MonoBehaviour
     void loadWorld()
     {
         SceneManager.LoadScene(1);
+    }
+
+    void loadCredits()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void BackTOHauptmenues()
+    {
+        SceneManager.LoadScene(0);
     }
 }
