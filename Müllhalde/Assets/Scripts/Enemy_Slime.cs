@@ -25,7 +25,12 @@ public class Enemy_Slime : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private Rigidbody rb;
 
-    public enum Enemystate { Chase, Attack };
+    public enum Enemystate
+    {
+        Chase,
+        Attack
+    };
+
     public Enemystate enemystate = Enemystate.Chase;
 
 
@@ -40,8 +45,8 @@ public class Enemy_Slime : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         navMeshAgent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
-
     }
+
     private void Update()
     {
         if (!death && !GreiftAn)
@@ -49,10 +54,10 @@ public class Enemy_Slime : MonoBehaviour
             navMeshAgent.SetDestination(player.transform.position);
         }
     }
+
     // Update is called once per frame
     void FixedUpdate()
     {
-
         /*if (enemystate == Enemystate.Chase)
         {
             navMeshAgent.isStopped = false;
@@ -61,15 +66,14 @@ public class Enemy_Slime : MonoBehaviour
         if (Distanz(transform.position, player.transform.position) <= maxDistance)
         {
             enemystate = Enemystate.Attack;
-           // navMeshAgent.isStopped = true;
+            // navMeshAgent.isStopped = true;
         }
+
         if (enemystate == Enemystate.Attack && isWait == false)
         {
             isWait = true;
             StartCoroutine(WaitBeforeGroundCheck());
         }
-
-
     }
 
     private IEnumerator WaitBeforeGroundCheck()
@@ -81,24 +85,21 @@ public class Enemy_Slime : MonoBehaviour
         yield return new WaitForSeconds(2f);
         enemystate = Enemystate.Chase;
         isWait = false;
-
     }
+
     public void Attack()
     {
-
         //Animation 
         if (slimeHP > 1)
         {
             GreiftAn = false;
             anim.SetTrigger("attack");
-        }            
+        }
         else
         {
             gameObject.GetComponent<Rigidbody>().velocity = point.forward * speed;
         }
-
     }
-
 
 
     private void OnTriggerEnter(Collider enemy)
@@ -112,9 +113,12 @@ public class Enemy_Slime : MonoBehaviour
             DoDmg(10);
         }
     }
+
     public static float Distanz(Vector3 _v1, Vector3 _v2)
     {
-        return (float)Math.Pow(((_v1.x - _v2.x) * (_v1.x - _v2.x)) + ((_v1.y - _v2.y) * (_v1.y - _v2.y)) + ((_v1.z - _v2.z) * (_v1.z - _v2.z)), 0.5);
+        return (float)Math.Pow(
+            ((_v1.x - _v2.x) * (_v1.x - _v2.x)) + ((_v1.y - _v2.y) * (_v1.y - _v2.y)) +
+            ((_v1.z - _v2.z) * (_v1.z - _v2.z)), 0.5);
     }
 
     public void TakeDamage1(int amount)
@@ -150,7 +154,7 @@ public class Enemy_Slime : MonoBehaviour
     {
         if (slimeHP <= 0)
         {
-            //später einfügen
+            //spï¿½ter einfï¿½gen
             EnemyDrops drops = new EnemyDrops();
             drops.DropItems();
             Destroy(gameObject);
@@ -163,7 +167,7 @@ public class Enemy_Slime : MonoBehaviour
         foreach (Collider c in GetComponents<Collider>())
         {
             c.enabled = false;
-    }
+        }
     }
 
     public void Shoot_Kugel()
@@ -171,7 +175,6 @@ public class Enemy_Slime : MonoBehaviour
         TakeDamage1(1);
         GameObject bul = (GameObject)Instantiate(projectile, point.transform.position, Quaternion.identity);
         bul.gameObject.GetComponent<Rigidbody>().velocity = point.forward * speed;
-
     }
 
     public void Greift_Nicht_Mehr_An()
@@ -184,4 +187,3 @@ public class Enemy_Slime : MonoBehaviour
         player.GetComponent<PlayerMovement>().GetDmg(dmg);
     }
 }
-
