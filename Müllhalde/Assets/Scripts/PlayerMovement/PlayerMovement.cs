@@ -166,7 +166,14 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
+    private void FixedUpdate()
+    {
+        if (Life <= 0)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            SceneManager.LoadScene(3);
+        }
+    }
     public void GetDmg(int Dmg)
     {
         if (!canNotGetDmg)
