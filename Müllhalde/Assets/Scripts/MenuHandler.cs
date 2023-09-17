@@ -20,7 +20,7 @@ public class MenuHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ReoRecyclePoints;
     [SerializeField] private TextMeshProUGUI trashPoints;
 
-    [Header("Windows")] [SerializeField] private GameObject crosshair;
+    [Header("Windows")][SerializeField] private GameObject crosshair;
     [SerializeField] private GameObject shopWindow;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject showInfoUI;
@@ -30,11 +30,23 @@ public class MenuHandler : MonoBehaviour
 
     private static int weaponUpgradeCount = 0;
 
+    public GameObject audioSource;
+
+    public void playButtonSound()
+    {
+        if (audioSource != null)
+        {
+            audioSource.GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
+
+        }
+    }
+
     /// <summary>
     /// starts the first level of the game
     /// </summary>
     public void StartGame()
     {
+        playButtonSound();
         SceneManager.LoadSceneAsync("Level1");
         Debug.Log("loaded level1 ");
     }
@@ -44,6 +56,7 @@ public class MenuHandler : MonoBehaviour
     /// </summary>
     public void OpenLevelSelection()
     {
+        playButtonSound();
         SceneManager.LoadSceneAsync("LevelSelection");
     }
 
@@ -52,12 +65,14 @@ public class MenuHandler : MonoBehaviour
     /// </summary>
     public void QuitGame()
     {
+        playButtonSound();
         Application.Quit();
     }
 
 
     public void OpenShopWindow()
     {
+        playButtonSound();
         showInfoUI.SetActive(false);
         player.Disable();
 
@@ -70,6 +85,7 @@ public class MenuHandler : MonoBehaviour
 
     public void CloseShopWindow()
     {
+        playButtonSound();
         player.Enable();
 
         shopWindow.SetActive(false);
@@ -81,6 +97,7 @@ public class MenuHandler : MonoBehaviour
 
     public void UpgradeWeapon()
     {
+        playButtonSound();
         Weapon.currentWeapon++;
         for (int i = 0; i <= weaponUpgradeCount; i++)
         {
@@ -95,6 +112,7 @@ public class MenuHandler : MonoBehaviour
 
     public void RestartGame()
     {
+        playButtonSound();
         SceneManager.LoadSceneAsync("Level_1");
     }
 
@@ -131,6 +149,7 @@ public class MenuHandler : MonoBehaviour
 
     public void OnRecycleClick()
     {
+        playButtonSound();
         EnemyDrops.amountTrash -= 10;
         EnemyDrops.amountReoRecycle += 1;
     }
@@ -140,6 +159,7 @@ public class MenuHandler : MonoBehaviour
     /// </summary>
     public void OpenCredits()
     {
+        playButtonSound();
         credits.SetActive(true);
     }
 
@@ -148,6 +168,7 @@ public class MenuHandler : MonoBehaviour
     /// </summary>
     public void CloseCredits()
     {
+        playButtonSound();
         credits.SetActive(false);
     }
 
@@ -156,6 +177,7 @@ public class MenuHandler : MonoBehaviour
     /// </summary>
     public void OpenPauseMenu()
     {
+        playButtonSound();
         player.Disable();
 
         pauseMenu.SetActive(true);
@@ -166,11 +188,13 @@ public class MenuHandler : MonoBehaviour
 
     public void OpenMainMenu()
     {
+        playButtonSound();
         SceneManager.LoadSceneAsync("MainMenu");
     }
 
     public void ClosePauseMenu()
     {
+        playButtonSound();
         player.Enable();
 
 
